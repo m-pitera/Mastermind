@@ -1,4 +1,5 @@
 #no structure yet, just drafting some logic
+#will split up into dif methods in the future
 
 class Game
   attr_reader :guess
@@ -30,11 +31,22 @@ class Game
   def check_input(p_input)
     p_input.each do |value|
       if(value.is_a? Integer)
-        if(value)
-
+        if(value.between?(1,6))
+          #return true
         end
+        #else return false
       end
     end
+  end
+
+  #checks if the game is over and tells the user how many guesses they have left
+  def check_game_status()
+
+  end
+
+  #post-game prompts user whether they'd like to try again
+  def game_end()
+
   end
 
 end
