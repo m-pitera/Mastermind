@@ -32,6 +32,7 @@ class Game
     p_input.each do |value|
       if(value.is_a? Integer)
         if(value.between?(1,6))
+          
           #return true
         end
         #else return false
