@@ -11,8 +11,10 @@ class Game
 
     if(check_input(theInput))
       @guess = theInput
+    else
+      put("Sorry, that's not the correct input, please refer to the instruction for the input method")
+      take_input()
     end
-
   end
 
   def gen_secret_code
@@ -31,11 +33,15 @@ class Game
   def check_input(p_input)
     p_input.each do |value|
       if(value.is_a? Integer)
+
         if(value.between?(1,6))
-          
-          #return true
+          return true
+        else
+          return false
         end
-        #else return false
+
+      else
+        return false
       end
     end
   end
