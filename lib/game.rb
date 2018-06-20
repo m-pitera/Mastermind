@@ -4,6 +4,14 @@
 class Game
   attr_reader :guess
   attr_reader :code
+  attr_reader :guesses_left
+
+  def initialize()
+    @guesses_left = 10
+    @code = gen_secret_code
+    @guess = ""
+
+  end
 
   def take_input()
     print("What is your guess?\n\t>>>")
@@ -12,6 +20,7 @@ class Game
 
     if(check_input(the_input))
       @guess = the_input
+      @guesses_left -= 1
     else
       puts("Sorry, that's not the correct input, please refer to the instruction for the input method")
       take_input()
@@ -32,9 +41,11 @@ class Game
   end
 
   def check_input(p_input)
+    puts p_input
     p_input.each do |value|
-      if /[1-6]/ == value
-        return true
+      puts "this is the val: " + value
+      if /[1-6]/ === value.to_s
+        #do nothing
       else
         return false
       end
@@ -58,5 +69,16 @@ end
 new_game = Game.new
 new_game.take_input()
 puts new_game.guess
-#new_game.gen_secret_code()
-#puts new_game.code
+new_game.gen_secret_code()
+puts new_game.code
+
+
+# # num = 1111
+# # puts num
+# # number = num.to_s.split(//)
+#
+# new_var = ["b", "r", "u", "h"]
+# #puts number
+# # isCorrect = new_game.check_input(number)
+# isCorrect = new_game.check_input(new_var)
+# puts isCorrect
