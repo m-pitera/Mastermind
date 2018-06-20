@@ -13,6 +13,30 @@ class Game
 
   end
 
+#This is just testing methods and etc
+  def main()
+
+    take_input()
+    puts @guess
+    gen_secret_code()
+    puts @code
+
+    # # num = 1111
+    # # puts num
+    # # number = num.to_s.split(//)
+    #
+    # new_var = ["b", "r", "u", "h"]
+    # #puts number
+    # # isCorrect = new_game.check_input(number)
+    # isCorrect = new_game.check_input(new_var)
+    # puts isCorrect
+  end
+
+  def introduce_user()
+    puts("***!!Welcome to Mastermind!!***")
+    puts("\n\tThe rules are simple, the Computer will generate a secret code that you will have to guess. There are 6 colors with the code containing 4 colors in which the order matters.\n\tYou will input your guess in the form of \"[color] [color] [color] [color]\".\n\tThe computer will give you feedback in the form of \"[peg type] [peg type] [peg type] [peg type]\" in which the peg type will either be white, red, or none: \n\tWhite: Your guess is the right color, but wrong position.\n\tRed: Your guess is at the right color and the right position.\n\tNone: This color is not part of the secret code")
+  end
+
   def take_input()
     print("What is your guess?\n\t>>>")
     the_input = gets.split(" ")
@@ -42,8 +66,10 @@ class Game
 
   def check_input(p_input)
     puts p_input
+
+    #use map instead
     p_input.each do |value|
-      puts "this is the val: " + value
+      puts ("this is the val: " + value)
       if /[1-6]/ === value.to_s
         #do nothing
       else
@@ -64,21 +90,5 @@ class Game
 
 end
 
-
-#This is just testing methods and etc
 new_game = Game.new
-new_game.take_input()
-puts new_game.guess
-new_game.gen_secret_code()
-puts new_game.code
-
-
-# # num = 1111
-# # puts num
-# # number = num.to_s.split(//)
-#
-# new_var = ["b", "r", "u", "h"]
-# #puts number
-# # isCorrect = new_game.check_input(number)
-# isCorrect = new_game.check_input(new_var)
-# puts isCorrect
+new_game.main
