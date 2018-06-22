@@ -1,8 +1,8 @@
 require 'Game'
 
-RSpec.describe Code, "given" do
+describe Code, "given" do
 
-    it "the game input '1, 2, 5, 6' to take_input, it outputs an error message and redirects user by calling method again" do
-      #expect(Game.take_input([1, 2, 5, 3]).convert).to eq #something
+    xit "the game input '1, 2, 5, 6' to take_input, it outputs an error message and redirects user by calling method again" do
+      #expect(Game.take_input([1, 2, 5, 3]).convert).to_eq #something
     end
 end
