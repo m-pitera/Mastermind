@@ -13,31 +13,6 @@ class Game
 
   # This is just testing methods and etc
   # most of this was used for debugging and etc
-  def main
-    introduce_user
-    gen_secret_code
-    take_input
-    # puts @guess
-    # puts @code
-
-    # puts('testing colors')
-    # puts(red('red'))
-    # puts(orange('orange'))
-    # puts(yellow('yellow'))
-    # puts(green('green'))
-    # puts(blue('blue'))
-    # puts(purple('purple'))
-
-    # # num = 1111
-    # # puts num
-    # # number = num.to_s.split(//)
-    #
-    # new_var = ["b", "r", "u", "h"]
-    # #puts number
-    # # isCorrect = new_game.validate_input(number)
-    # isCorrect = new_game.validate_input(new_var)
-    # puts isCorrect
-  end
 
   def introduce_user
     system 'clear'
@@ -68,22 +43,35 @@ class Game
 
       You win if you are able to guess the code within 10 tries, otherwise
     the computer wins. You can quit the game after anytime that you receive
-    feedback by typing 'quit'.""")
+    feedback by typing 'quit'.
+    """)
+    type_ok
+    system 'clear'
+  end
+
+  def type_ok
+    print ("Type 'ok' to continue: ")
+    response = gets.chomp
+    if response.eql? 'ok'
+      return
+    else
+      type_ok
+    end
   end
 
   def take_input
     puts("\nYou have " + cyan(guesses_left) + ' guesses left')
     print("What is your guess?\n\t" + purple_b('>>>'))
     the_input = gets.split(' ')
-    print("#{the_input}\n")
+    # print("#{the_input}\n")
 
     if validate_input(the_input)
       @guess = the_input
       @guesses_left -= 1
     else
       # further into dev I might check and return for specific cases of incorrect input
-      puts("Sorry, that's not the correct input, please refer to the instruction
-        for the input method")
+      puts(red_b("Sorry, that's not the correct input, please refer to the instruction
+        for the input method"))
       take_input
     end
   end
@@ -91,11 +79,7 @@ class Game
   def gen_secret_code
     randomness = Random.new
     @code = (1..4).map { |_| randomness.rand(1..6) }
-    # @code = Array.new(4, 0)
-    #
-    # for i in 0..5
-    #   code[i] = randomness.rand(1..6)
-    # end
+    puts(blue_b('The secret code has been generated, you may begin . . .'))
   end
 
   def give_feedback(p_input = @guess); end
@@ -103,7 +87,6 @@ class Game
   def evaluate_guess; end
 
   def validate_input(p_input)
-    puts p_input
 
     # note to self: imlpement map to replace
     p_input.each do |value|
@@ -118,28 +101,32 @@ class Game
 
   # checks if the game is over
   # tells the user how many guesses they have left
-  def check_game_status; end
+  def check_game_status;
+    if guesses_left <= 0
+      return 'game_over'
+    else
+      return 'game_continue'
+    end
+  end
 
   # post-game prompts user whether they'd like to try again
   def game_end
-    puts('Thanks for playing!')
+    puts(cyan_b('Thanks for playing!'))
     exit(0)
   end
 
+  def game_over
+    puts('Nice try, but you ran our of guesses :(')
+  end
+
   def prompt_start
+    system 'clear'
     if first_time
       print('Would you like to begin? [y/n]')
     else
       print('Would you like to go again? [y/n]')
     end
-    response = gets.chomp
-
-    if response == 'y'
-      main
-      # the game starts
-    else
-      game_end
-    end
+    return gets.chomp
   end
 
   #colors
@@ -163,5 +150,20 @@ class Game
   def white_b(text); colorize(text, 97); end
 end
 
-new_game = Game.new
-new_game.prompt_start
+def main
+  the_game = Game.new
+
+  if the_game.prompt_start.eql? 'y'
+    #game continues to begin
+  else
+    the_game.game_end
+  end
+
+  the_game.introduce_user
+  the_game.gen_secret_code
+  the_game.take_input
+end
+
+if __FILE__ == $0
+    main
+end
