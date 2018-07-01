@@ -4,18 +4,17 @@ require './colors'
 require './secret_code'
 require './output'
 
-# note to self: I left off trying to fix an error within Output that did not
-# recognize User as a class even with require. If error persists ask someone
-
-# note to self 2: still doesn't work; reeeeeeeeeeeeeeeeeeee
+# infinite refactoring in progress
+# ironically it's messier than ever before
 
 def main
   the_user = User.new
 
-  if the_user.prompt_start.eql? 'y'
+  if the_user.prompt_start.downcase.eql? 'y'
     #game continues to begin
   else
-    GameStatus.game_end
+    puts(Colors.cyan_b('Why not tho?'))
+    exit(0)
   end
 
   Output.print_intro

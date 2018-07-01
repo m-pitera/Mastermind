@@ -1,6 +1,7 @@
 require './output'
 require './colors'
 
+# User class knows too much, i made a mess and now refactoring
 class User
   attr_reader :guess, :guesses_left, :first_time
 
@@ -14,11 +15,7 @@ class User
     the_guesses_left = @guesses_left
     the_input = Output.print_input_prompt(the_guesses_left)
 
-    if (the_input.downcase.eql? 'quit')
-      quit_plz
-    else
-      the_input = the_input.split(' ')
-    end
+    the_input = is_quit?(the_input)
 
     if (validate_input(the_input))
       @guess = the_input
@@ -35,9 +32,10 @@ class User
   end
 
   def give_feedback(p_input = @guess)
-    if GameStatus.game_over?(@guesses_left)
-      quit_plz
-    end
+    # if GameStatus.game_over?(@guesses_left)
+    #   quit_plz
+    # end
+    GameStatus.guesses_left?(@guesses_left)
 
     puts("I haven't coded the feedback yet :)")
     next_command('feedback')
@@ -45,11 +43,9 @@ class User
 
   def prompt_start
     system 'clear'
-    if first_time
-      print(Colors.green_b('Would you like to begin? [y/n]'))
-    else
-      print(Colors.green_b('Would you like to go again? [y/n]'))
-    end
+
+    Output.print_start_again(@first_time)
+
     return gets.chomp
   end
 
@@ -78,7 +74,13 @@ class User
     end
   end
 
-  def quit_plz
-    GameStatus.game_end
+  def is_quit?(user_input)
+    if (user_input.downcase.eql? 'quit')
+      # quit_plz
+      puts 'some code got lost while refactoring'
+      exit(0)
+    else
+      return user_input.split(' ')
+    end
   end
 end
