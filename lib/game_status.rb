@@ -1,5 +1,4 @@
 module GameStatus
-
   class << self
     def game_end
       system 'clear'
@@ -7,21 +6,21 @@ module GameStatus
       exit(0)
     end
 
-    def game_status
-      if get_guesses <= 0
+    def game_over?(guesses_left)
+      if guesses_left.zero?
         game_over
-        return 'game_over'
+        true
       else
-        return 'game_continue'
+        false
       end
     end
 
     def game_over
-      puts('Nice try, but you ran our of guesses :(')
+      puts(Colors.red_b('Nice try, but you ran out of guesses :('))
     end
 
-    def get_guesses
-      give_guesses
-    end
+    # def get_guesses
+    #  give_guesses
+    # end
   end
 end
