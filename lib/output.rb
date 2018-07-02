@@ -5,10 +5,9 @@ require './game_status'
 require './input'
 
 class Output
-
   class << self
-    TITLE_STARS = (Colors.yellow_b('*******************************')).center(85)
-    TITLE = (Colors.yellow_b('*****') + Colors.red_b('Welcome to Mastermind') + Colors.yellow_b('*****')).center(103)
+    TITLE_STARS = Colors.yellow_b('*******************************').center(85)
+    TITLE = Colors.yellow_b('*****') + Colors.red_b('Welcome to Mastermind') + Colors.yellow_b('*****').center(103)
     RULES = """
       The rules are simple, the Computer will generate a secret code
     that you will have to guess. There are 6 colors with the code containing
@@ -31,7 +30,6 @@ class Output
     the computer wins. You can quit the game after anytime that you receive
     feedback by typing 'quit'.
     """
-    # INPUT_PROMPT = "\nYou have " + Colors.cyan(guesses_left_string) + ' guesses left' + "\nWhat is your guess?\n\t" + Colors.purple_b('>>>')
     GUESSES_LEFT = "\nGuesses left: "
     INPUT_PROMPT = "What is your guess?\n\t" + Colors.purple_b('>>>')
     INPUT_ERROR = Colors.red_b("\nSorry, that's not the correct input:\n\tPlease refer to the instructions for the input method")
@@ -74,27 +72,23 @@ class Output
       puts CODE_GENERATED
     end
 
+      private
 
-    private
+    def instructions
+      puts RULES
+    end
 
-      def instructions
-        puts RULES
-      end
+    def header
+      puts TITLE_STARS
+      puts TITLE
+      puts TITLE_STARS
+    end
 
-      def header
-        puts TITLE_STARS
-        puts TITLE
-        puts TITLE_STARS
-      end
-
-      def type_ok
-        print ("Type 'ok' to continue: ")
-        response = gets.chomp
-        if response.downcase.eql? 'ok'
-          return
-        else
-          type_ok
-        end
-      end
+    def type_ok
+      print "Type 'ok' to continue: "
+      response = gets.chomp
+      type_ok unless response.casecmp('ok').zero?
+      return
+    end
   end
 end

@@ -1,5 +1,10 @@
 require './input'
+require './output.rb'
 
-class Main
+def main
+  puts 'test'
+end
 
+if __FILE__ == $PROGRAM_NAME
+  main
 end
