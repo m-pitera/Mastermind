@@ -13,11 +13,13 @@ module GameStatus
 
     def game_end
       Output.print_no_guesses
-      Output.print_start_again
+      Output.print_the_code
+      game_exit
+      # Output.print_start_again
     end
 
     def game_exit
-      system 'clear'
+      # system 'clear'
       puts(Colors.cyan_b('Thanks for playing!'))
       exit(0)
     end

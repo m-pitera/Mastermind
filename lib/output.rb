@@ -1,5 +1,6 @@
 require_relative './user'
 require_relative './colors'
+require_relative './secret_code'
 
 class Output
 
@@ -36,6 +37,7 @@ class Output
     GAME_BEGIN = Colors.green_b('Would you like to begin? [y/n]')
     GAME_AGAIN = Colors.green_b('Would you like to go again? [y/n]')
     NO_GUESSES = Colors.red_b('Nice try, but you ran out of guesses :(')
+    THE_ANSWER = Colors.white_b('The secret code was: ')
 
     def print_intro
       puts ''
@@ -60,7 +62,12 @@ class Output
     end
 
     def print_no_guesses
+      system 'clear'
       puts NO_GUESSES
+    end
+
+    def print_the_code
+      puts THE_ANSWER + Colors.yellow_b(@de_code.join(' '))
     end
 
     def print_input_error
@@ -71,6 +78,9 @@ class Output
       puts CODE_GENERATED
     end
 
+    def gimme_de_code(de_code)
+      @de_code = de_code
+    end
 
     private
 

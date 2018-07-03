@@ -5,6 +5,7 @@ class SecretCode
 
   def initialize
     @code = gen_secret_code
+    Output.gimme_de_code(@code)
   end
 
   def gen_secret_code
