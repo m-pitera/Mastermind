@@ -1,4 +1,5 @@
 require './output'
+require './main'
 
 module GameStatus
   class << self
@@ -14,8 +15,13 @@ module GameStatus
     def game_end
       Output.print_no_guesses
       Output.print_the_code
+      Output.print_start_again
+
+      if gets.chomp.downcase.eql? 'y'
+        puts 'too bad, thanks for playing though x)'
+        exit(0)
+      end
       game_exit
-      # Output.print_start_again
     end
 
     def game_exit
