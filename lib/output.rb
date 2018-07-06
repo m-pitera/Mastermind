@@ -37,6 +37,11 @@ class Output
     GAME_BEGIN = Colors.green_b('Would you like to begin? [y/n]')
     GAME_AGAIN = Colors.green_b('Would you like to go again? [y/n]')
     NO_GUESSES = Colors.red_b('Nice try, but you ran out of guesses :(')
+    GAME_MODE_PROMPT = Colors.green_b('Would you like to generate the code or guess it? [gen/guess]')
+
+    def print_game_type_prompt
+      print GAME_MODE_PROMPT
+    end
 
     def print_intro
       puts ''

@@ -2,7 +2,7 @@ require './input'
 require './output'
 
 def main
-  puts 'test'
+  Input.takeInput('game_type')
 end
 
 if __FILE__ == $PROGRAM_NAME

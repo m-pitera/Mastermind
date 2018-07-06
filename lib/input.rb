@@ -7,10 +7,10 @@ class Input
   class << self
     def takeInput(type)
       the_input = gets.chomp
-      if type.eql? 'user_guess'
+      if type.eql? 'game_type'
+        prompt_game_type
+      elsif type.eql? 'user_guess'
         Code.compare(the_input)
-      # elsif type.eql? ''
-
       end
     end
   end
@@ -25,6 +25,17 @@ class Input
       else
         return
       end
+    end
+  end
+
+  def prompt_game_type
+    Output.print_game_type_prompt
+    if gets.chomp.downsize.eql? 'gen'
+      # user is prompted to generate code and the computer guesses
+    elsif gets.chomp.downsize.eql? 'guess'
+      # user is given instructions
+      # user is prompted for guess
+      # ^ these two can be private methods that are called within a method called here
     end
   end
 end
