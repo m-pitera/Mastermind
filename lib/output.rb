@@ -1,4 +1,3 @@
-require './user'
 require './colors'
 require './code'
 require './game_status'

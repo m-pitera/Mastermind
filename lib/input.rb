@@ -31,8 +31,6 @@ class Input
       Output.print_confirmation
       if gets.chomp.downsize.eql? 'y'
         GameStatus.quit
-      else
-        return
       end
     end
   end
