@@ -68,6 +68,10 @@ class Output
       puts NO_GUESSES
     end
 
+    def print_the_code(code)
+      puts THE_ANSWER + Colors.yellow_b(code.join(' '))
+    end
+
     def print_input_error
       puts INPUT_ERROR
     end

@@ -15,12 +15,13 @@ class Input
     end
 
     def start_gen_type
+      Ouput.print_intro # would prob make an alt intro bc context does not apply
       prompt_secret_code
       AI.solve
     end
 
     def start_guess_type
-
+      Output.print_intro
     end
   end
 
