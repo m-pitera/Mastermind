@@ -1,4 +1,3 @@
-
 module Validate
   def is_valid?
     valid = true
@@ -36,9 +35,21 @@ module Validate
 
     private
 
-  def length_valid; end
+  def length_valid
+    return true if the_code.length.eql 4
 
-  def context_valid; end
+    return false
+  end
 
-  def type_valid; end
+  def type_valid
+    return true if the_code.all? { |val| val.is_a Integer}
+
+    return false
+  end
+
+  def context_valid
+    return true if the_code.all? { |val| val.between(1, 6) }
+
+    return false
+  end
 end

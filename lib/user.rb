@@ -1,5 +1,6 @@
 require './output'
 require './colors'
+require './validate'
 
 # User class knows too much, i made a mess and now refactoring
 class User
