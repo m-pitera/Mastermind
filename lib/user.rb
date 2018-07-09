@@ -23,9 +23,7 @@ class User
       next_command('input')
       return
     else
-      # further into dev I might check and return for specific cases of incorrect input
-      # puts(Colors.red_b("\nSorry, that's not the correct input:\n\tPlease refer to the instructions for the input method"))
-      Output.print_input_error
+      # Output.print_input_error
       take_input
       return
     end
@@ -65,13 +63,25 @@ class User
 
   def validate_input(p_input)
     # note to self: imlpement map to replace this
+
+    # this doesn't work
+    # if p_input.all? { |i| i.between?(1, 6) }  false
+    #   return false
+    # end
+
     p_input.each do |value|
-      if /[1-6]/ === value.to_s
-        # do nothing
-      else
+      if !(/[1-6]/ === value.to_s)
         return false
+        Output.print_num_error
+        break
       end
     end
+
+    if p_input.length != 4
+      return false
+      Output.print_out_of_bounds_error
+    end
+
   end
 
   def is_quit?(user_input)
