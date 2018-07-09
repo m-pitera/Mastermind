@@ -78,20 +78,24 @@ class Output
       puts THE_ANSWER + Colors.yellow_b(@de_code.join(' '))
     end
 
+    def print_error_start
+      puts "\n\t" + ERRORS
+    end
+
     def print_input_error
       puts INPUT_ERROR
     end
 
     def print_length_error
-      puts "\t" + LENGTH_ERROR
+      puts "\n\t\t" + LENGTH_ERROR
     end
 
     def print_type_error
-      puts "\t" + TYPE_ERROR
+      puts "\n\t\t" + TYPE_ERROR
     end
 
     def print_context_error
-      puts "\t" + CONTEXT_ERROR
+      puts "\n\t\t" + CONTEXT_ERROR
     end
 
     def gimme_de_code(de_code)

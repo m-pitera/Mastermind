@@ -4,6 +4,7 @@ require './validate'
 
 # User class knows too much, i made a mess and now refactoring
 class User
+  include Validate
   attr_reader :guess, :guesses_left, :first_time
 
   def initialize
@@ -18,16 +19,11 @@ class User
 
     the_input = is_quit?(the_input)
 
-    if (validate_input(the_input))
-      @guess = the_input
-      @guesses_left -= 1
-      next_command('input')
-      return
-    else
-      # Output.print_input_error
-      take_input
-      return
-    end
+    take_input unless !(is_valid?(the_input))
+
+    @guess = the_input
+    @guesses_left -= 1
+    next_command('input')
   end
 
   def give_feedback(p_input = @guess)
@@ -60,29 +56,6 @@ class User
     else
       return
     end
-  end
-
-  def validate_input(p_input)
-    # note to self: imlpement map to replace this
-
-    # this doesn't work
-    # if p_input.all? { |i| i.between?(1, 6) }  false
-    #   return false
-    # end
-
-    p_input.each do |value|
-      if !(/[1-6]/ === value.to_s)
-        return false
-        Output.print_num_error
-        break
-      end
-    end
-
-    if p_input.length != 4
-      return false
-      Output.print_out_of_bounds_error
-    end
-
   end
 
   def is_quit?(user_input)
