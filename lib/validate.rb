@@ -1,11 +1,37 @@
 
 module Validate
   def is_valid?
-    if !length_valid; end
+    valid = true
+    errors = []
 
-    if !context_valid; end
+    if !length_valid
+      valid = false
+      errors << 'length'
+    end
 
-    if !type_valid; end
+    if !type_valid
+      valid = false
+      errors << 'type'
+    end
+
+    if !context_valid
+      valid = false
+      errors << 'context'
+    end
+
+    if !valid
+      Output.print_errors
+
+      errors.each do |error|
+        if error.eql 'length'
+          Output.print_length_error
+        elsif error.eql 'type'
+          Output.print_type_error
+        elsif error.eql 'context'
+          Output.print_context_error
+        end
+      end
+    end
   end
 
     private

@@ -38,6 +38,10 @@ class Output
     GAME_AGAIN = Colors.green_b('Would you like to go again? [y/n]')
     NO_GUESSES = Colors.red_b('Nice try, but you ran out of guesses :(')
     THE_ANSWER = Colors.white_b('The secret code was: ')
+    ERRORS = Colors.red_b('Error(s):')
+    LENGTH_ERROR = Colors.red_b('The input is an incorrect length. The input should be inputing 4 characters')
+    TYPE_ERROR = Colors.red_b('That\'s not the correct input type. I need nums plz')
+    CONTEXT_ERROR = Colors.red_b('Hmmmmmmmm. I know arrays start at 0, but I want values 1-6 x|')
 
     def print_intro
       puts ''
@@ -66,6 +70,10 @@ class Output
       puts NO_GUESSES
     end
 
+    def print_code_generated
+      puts CODE_GENERATED
+    end
+
     def print_the_code
       puts THE_ANSWER + Colors.yellow_b(@de_code.join(' '))
     end
@@ -74,8 +82,16 @@ class Output
       puts INPUT_ERROR
     end
 
-    def print_code_generated
-      puts CODE_GENERATED
+    def print_length_error
+      puts "\t" + LENGTH_ERROR
+    end
+
+    def print_type_error
+      puts "\t" + TYPE_ERROR
+    end
+
+    def print_context_error
+      puts "\t" + CONTEXT_ERROR
     end
 
     def gimme_de_code(de_code)
