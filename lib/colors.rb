@@ -15,7 +15,7 @@ module Colors
       def white(text); colorize(text, 37); end
       def white_b(text); colorize(text, 97); end
 
-      private
+        private
 
       def colorize(text, color_code)
         "\e[#{color_code}m#{text}\e[0m"
