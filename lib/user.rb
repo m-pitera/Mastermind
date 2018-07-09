@@ -1,10 +1,9 @@
 require './output'
-require './colors'
 require './validate'
 
 # User class knows too much, i made a mess and now refactoring
 class User
-  include Validate
+  include Validate, Output, GameStatus
   attr_reader :guess, :guesses_left, :first_time
 
   def initialize
@@ -15,7 +14,7 @@ class User
 
   def take_input
     the_guesses_left = @guesses_left
-    the_input = Output.print_input_prompt(the_guesses_left)
+    the_input = print_input_prompt(the_guesses_left)
 
     the_input = is_quit?(the_input)
 
@@ -39,7 +38,7 @@ class User
   def prompt_start
     system 'clear'
 
-    Output.print_start_again(@first_time)
+    print_start_again(@first_time)
 
     return gets.chomp
   end

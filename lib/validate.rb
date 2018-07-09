@@ -1,6 +1,7 @@
 require './output'
 
 module Validate
+  include Output
   def is_valid?(the_input)
     valid = true
     errors = []
@@ -21,15 +22,15 @@ module Validate
     end
 
     if !valid
-      Output.print_error_start
+      print_error_start
 
       errors.each do |error|
         if error.eql? 'length'
-          Output.print_length_error
+          print_length_error
         elsif error.eql? 'type'
-          Output.print_type_error
+          print_type_error
         elsif error.eql? 'context'
-          Output.print_context_error
+          print_context_error
         end
       end
     end
