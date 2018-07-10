@@ -1,5 +1,6 @@
 require_relative './user'
 require_relative './colors'
+require_relative './secret_code'
 
 class Output
 
@@ -32,7 +33,11 @@ class Output
     GUESSES_LEFT = "\nGuesses left: "
     INPUT_PROMPT = "What is your guess?\n\t" + Colors.purple_b('>>>')
     INPUT_ERROR = Colors.red_b("\nSorry, that's not the correct input:\n\tPlease refer to the instructions for the input method")
-
+    CODE_GENERATED = Colors.blue_b('The secret code has been generated, you may begin . . .')
+    GAME_BEGIN = Colors.green_b('Would you like to begin? [y/n]')
+    GAME_AGAIN = Colors.green_b('Would you like to go again? [y/n]')
+    NO_GUESSES = Colors.red_b('Nice try, but you ran out of guesses :(')
+    THE_ANSWER = Colors.white_b('The secret code was: ')
 
     def print_intro
       puts ''
@@ -42,14 +47,39 @@ class Output
       system 'clear'
     end
 
+    def print_start_again(first_time_p = false)
+      if first_time_p
+        print GAME_BEGIN
+      else
+        print GAME_AGAIN
+      end
+    end
+
     def print_input_prompt(guesses_left)
       puts GUESSES_LEFT + Colors.cyan(guesses_left.to_s)
       print INPUT_PROMPT
       return gets.chomp
     end
 
+    def print_no_guesses
+      system 'clear'
+      puts NO_GUESSES
+    end
+
+    def print_the_code
+      puts THE_ANSWER + Colors.yellow_b(@de_code.join(' '))
+    end
+
     def print_input_error
       puts INPUT_ERROR
+    end
+
+    def print_code_generated
+      puts CODE_GENERATED
+    end
+
+    def gimme_de_code(de_code)
+      @de_code = de_code
     end
 
     private
@@ -67,7 +97,7 @@ class Output
       def type_ok
         print ("Type 'ok' to continue: ")
         response = gets.chomp
-        if response.eql? 'ok'
+        if response.downcase.eql? 'ok'
           return
         else
           type_ok

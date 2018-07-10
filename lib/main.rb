@@ -4,13 +4,17 @@ require './colors'
 require './secret_code'
 require './output'
 
+# infinite refactoring in progress
+# ironically it's messier than ever before
+
 def main
   the_user = User.new
 
-  if the_user.prompt_start.eql? 'y'
+  if the_user.prompt_start.downcase.eql? 'y'
     #game continues to begin
   else
-    GameStatus.game_end
+    puts(Colors.cyan_b('Why not tho?'))
+    exit(0)
   end
 
   Output.print_intro

@@ -1,26 +1,33 @@
+require './output'
+require './main'
+
 module GameStatus
   class << self
-    def game_end
-      system 'clear'
-      puts(Colors.cyan_b('Thanks for playing!'))
-      exit(0)
-    end
 
-    def game_over?(guesses_left)
+    def guesses_left?(guesses_left)
       if guesses_left.zero?
-        game_over
-        true
-      else
-        false
+        game_end
       end
     end
 
-    def game_over
-      puts(Colors.red_b('Nice try, but you ran out of guesses :('))
+    private
+
+    def game_end
+      Output.print_no_guesses
+      Output.print_the_code
+      Output.print_start_again
+
+      if gets.chomp.downcase.eql? 'y'
+        puts 'too bad, thanks for playing though x)'
+        exit(0)
+      end
+      game_exit
     end
 
-    # def get_guesses
-    #  give_guesses
-    # end
+    def game_exit
+      # system 'clear'
+      puts(Colors.cyan_b('Thanks for playing!'))
+      exit(0)
+    end
   end
 end
