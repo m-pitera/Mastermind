@@ -20,19 +20,7 @@ module Validate
       errors << 'context'
     end
 
-    if !valid
-      Output.print_error_start
-
-      errors.each do |error|
-        if error.eql? 'length'
-          Output.print_length_error
-        # elsif error.eql? 'type'
-        #   Output.print_type_error
-        elsif error.eql? 'context'
-          Output.print_context_error
-        end
-      end
-    end
+    output_errors(valid, errors)
   end
 
     private
@@ -47,5 +35,21 @@ module Validate
 
   def context_valid(the_input)
     the_input.all? { |val| val.to_i.between?(1, 6) }
+  end
+
+  def output_errors(valid, errors)
+    if !valid
+      Output.print_error_start
+
+      errors.each do |error|
+        if error.eql? 'length'
+          Output.print_length_error
+        # elsif error.eql? 'type'
+        #   Output.print_type_error
+        elsif error.eql? 'context'
+          Output.print_context_error
+        end
+      end
+    end
   end
 end
