@@ -1,12 +1,12 @@
-require './output'
+# require './output'
 
 class SecretCode
-  include Output
+  # include Output
   attr_reader :code
 
   def initialize
     @code = gen_secret_code
-    gimme_de_code(@code)
+    # gimme_de_code(@code)
   end
 
   def gen_secret_code

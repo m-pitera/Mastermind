@@ -9,11 +9,11 @@ module GameStatus
     end
   end
 
-  private
+    private
 
   def game_end
     print_no_guesses
-    print_the_code
+    # print_the_code
     print_start_again
 
     if gets.chomp.downcase.eql? 'y'

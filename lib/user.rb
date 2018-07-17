@@ -1,5 +1,6 @@
 require './output'
 require './validate'
+require './game_status'
 
 # User class knows too much, i made a mess and now refactoring
 class User
