@@ -24,7 +24,7 @@ module GameStatus
 
   def game_exit
     # system 'clear'
-    puts(Colors.cyan_b('Thanks for playing!'))
+    puts(Colors.colorize('Thanks for playing!', 'cyan_b'))
     exit(0)
   end
 end

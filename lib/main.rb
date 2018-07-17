@@ -14,7 +14,7 @@ def main
   if the_user.prompt_start.downcase.eql? 'y'
     #game continues to begin
   else
-    puts(Colors.cyan_b('Why not tho?'))
+    puts(Colors.colorize('Why not tho?', 'cyan_b'))
     exit(0)
   end
 

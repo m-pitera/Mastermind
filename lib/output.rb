@@ -4,8 +4,8 @@ require_relative './secret_code'
 
 class Output
   class << self
-    TITLE_STARS = (Colors.yellow_b('*******************************')).center(85)
-    TITLE = (Colors.yellow_b('*****') + Colors.red_b('Welcome to Mastermind') + Colors.yellow_b('*****')).center(103)
+    TITLE_STARS = (Colors.colorize('*******************************', 'yellow_b')).center(85)
+    TITLE = (Colors.colorize('*****', 'yellow_b') + Colors.colorize('Welcome to Mastermind', 'red_b') + Colors.colorize('*****', 'yellow_b')).center(103)
     RULES = """
       The rules are simple, the Computer will generate a secret code
     that you will have to guess. There are 6 colors with the code containing
@@ -30,17 +30,17 @@ class Output
     """
     # INPUT_PROMPT = "\nYou have " + Colors.cyan(guesses_left_string) + ' guesses left' + "\nWhat is your guess?\n\t" + Colors.purple_b('>>>')
     GUESSES_LEFT = "\nGuesses left: "
-    INPUT_PROMPT = "What is your guess?\n\t" + Colors.purple_b('>>>')
-    INPUT_ERROR = Colors.red_b("\nSorry, that's not the correct input:\n\tPlease refer to the instructions for the input method")
-    CODE_GENERATED = Colors.blue_b('The secret code has been generated, you may begin . . .')
-    GAME_BEGIN = Colors.green_b('Would you like to begin? [y/n]')
-    GAME_AGAIN = Colors.green_b('Would you like to go again? [y/n]')
-    NO_GUESSES = Colors.red_b('Nice try, but you ran out of guesses :(')
-    THE_ANSWER = Colors.white_b('The secret code was: ')
-    ERRORS = Colors.red_b('Error(s):')
-    LENGTH_ERROR = Colors.red_b('The input is an incorrect length. The input should be inputing 4 characters')
-    TYPE_ERROR = Colors.red_b('That\'s not the correct input type. I need nums plz')
-    CONTEXT_ERROR = Colors.red_b('Hmmmmmmmm. I know arrays start at 0, but I want values 1-6 x|')
+    INPUT_PROMPT = "What is your guess?\n\t" + Colors.colorize('>>>', 'purple_b')
+    INPUT_ERROR = Colors.colorize("\nSorry, that's not the correct input:\n\tPlease refer to the instructions for the input method", 'red_b')
+    CODE_GENERATED = Colors.colorize('The secret code has been generated, you may begin . . .', 'blue_b')
+    GAME_BEGIN = Colors.colorize('Would you like to begin? [y/n]', 'green_b')
+    GAME_AGAIN = Colors.colorize('Would you like to go again? [y/n]', 'green_b')
+    NO_GUESSES = Colors.colorize('Nice try, but you ran out of guesses :(', 'red_b')
+    THE_ANSWER = Colors.colorize('The secret code was: ', 'white_b')
+    ERRORS = Colors.colorize('Error(s):', 'red_b')
+    LENGTH_ERROR = Colors.colorize('The input is an incorrect length. The input should be inputing 4 characters', 'red_b')
+    TYPE_ERROR = Colors.colorize('That\'s not the correct input type. I need nums plz', 'red_b')
+    CONTEXT_ERROR = Colors.colorize('Hmmmmmmmm. I know arrays start at 0, but I want values 1-6 x|', 'red_b')
 
     def print_intro
       puts ''
@@ -59,7 +59,7 @@ class Output
     end
 
     def print_input_prompt(guesses_left)
-      puts GUESSES_LEFT + Colors.cyan(guesses_left.to_s)
+      puts GUESSES_LEFT + Colors.colorize(guesses_left.to_s, 'cyan_b')
       print INPUT_PROMPT
       return gets.chomp
     end
@@ -74,7 +74,7 @@ class Output
     end
 
     def print_the_code
-      puts THE_ANSWER + yellow_b(@de_code.join(' '))
+      puts THE_ANSWER + Colors.colorize(@de_code.join(' '), 'yellow_b')
     end
 
     def print_error_start
