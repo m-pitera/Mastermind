@@ -115,9 +115,7 @@ module Output
   def type_ok
     print ("Type 'ok' to continue: ")
     response = gets.chomp
-    if response.downcase.eql? 'ok'
-      return
-    else
+    unless response.downcase == 'ok'
       type_ok
     end
   end

@@ -39,20 +39,14 @@ module Validate
     private
 
   def length_valid(the_input)
-    return true if the_input.length.eql? 4
-
-    return false
+    the_input.length == 4
   end
 
   def type_valid(the_input)
-    return true if the_input.all? { |val| val.is_a? Integer}
-
-    return false
+    the_input.all? { |val| val.is_a? Integer}
   end
 
   def context_valid(the_input)
-    return true if the_input.all? { |val| val.to_i.between?(1, 6) }
-
-    return false
+    the_input.all? { |val| val.to_i.between?(1, 6) }
   end
 end
