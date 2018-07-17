@@ -27,7 +27,7 @@ class User
   end
 
   def give_feedback(p_input = @guess)
-    GameStatus.guesses_left?(@guesses_left)
+    GameStatus.game_over?(@guesses_left)
 
     puts("I haven't coded the feedback yet :)")
     next_command('feedback')
@@ -57,7 +57,7 @@ class User
 
   def is_quit?(user_input)
     if (user_input.downcase.eql? 'quit')
-      puts 'some code got lost while refactoring'
+      puts 'bai bai'
       exit(0)
     else
       return user_input.split(' ')

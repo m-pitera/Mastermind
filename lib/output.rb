@@ -41,6 +41,7 @@ class Output
     LENGTH_ERROR = Colors.colorize('The input is an incorrect length. The input should be inputing 4 characters', 'red_b')
     TYPE_ERROR = Colors.colorize('That\'s not the correct input type. I need nums plz', 'red_b')
     CONTEXT_ERROR = Colors.colorize('Hmmmmmmmm. I know arrays start at 0, but I want values 1-6 x|', 'red_b')
+    WIN = Colors.colorize('YOU WIN :D', 'cyan_b')
 
     def print_intro
       puts ''
@@ -99,6 +100,15 @@ class Output
 
     def gimme_de_code(de_code)
       @de_code = de_code
+    end
+
+    def print_lose
+      print_no_guesses
+      print_the_code
+    end
+
+    def print_win
+      puts WIN
     end
 
       private
