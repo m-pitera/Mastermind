@@ -11,10 +11,10 @@ module Validate
       errors << 'length'
     end
 
-    if !type_valid(the_input)
-      valid = false
-      errors << 'type'
-    end
+    # if !type_valid(the_input)
+    #   valid = false
+    #   errors << 'type'
+    # end
 
     if !context_valid(the_input)
       valid = false
@@ -27,8 +27,8 @@ module Validate
       errors.each do |error|
         if error.eql? 'length'
           print_length_error
-        elsif error.eql? 'type'
-          print_type_error
+        # elsif error.eql? 'type'
+        #   print_type_error
         elsif error.eql? 'context'
           print_context_error
         end
@@ -42,9 +42,9 @@ module Validate
     the_input.length == 4
   end
 
-  def type_valid(the_input)
-    the_input.all? { |val| val.is_a? Integer}
-  end
+  # def type_valid(the_input)
+  #   the_input.all? { |val| val.is_a? Integer}
+  # end
 
   def context_valid(the_input)
     the_input.all? { |val| val.to_i.between?(1, 6) }
