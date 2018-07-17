@@ -4,7 +4,7 @@ require './game_status'
 
 # User class knows too much, i made a mess and now refactoring
 class User
-  include Validate, Output, GameStatus
+  include Validate, GameStatus
   attr_reader :guess, :guesses_left, :first_time
 
   def initialize
@@ -15,7 +15,7 @@ class User
 
   def take_input
     the_guesses_left = @guesses_left
-    the_input = print_input_prompt(the_guesses_left)
+    the_input = Output.print_input_prompt(the_guesses_left)
 
     the_input = is_quit?(the_input)
 
@@ -27,9 +27,6 @@ class User
   end
 
   def give_feedback(p_input = @guess)
-    # if GameStatus.game_over?(@guesses_left)
-    #   quit_plz
-    # end
     GameStatus.guesses_left?(@guesses_left)
 
     puts("I haven't coded the feedback yet :)")
@@ -39,7 +36,7 @@ class User
   def prompt_start
     system 'clear'
 
-    print_start_again(@first_time)
+    Output.print_start_again(@first_time)
 
     return gets.chomp
   end
@@ -60,7 +57,6 @@ class User
 
   def is_quit?(user_input)
     if (user_input.downcase.eql? 'quit')
-      # quit_plz
       puts 'some code got lost while refactoring'
       exit(0)
     else

@@ -1,4 +1,4 @@
-module Colors
+class Colors
   class << self
     def red(text); colorize(text, 31); end
     def red_b(text); colorize(text, 91); end
@@ -15,7 +15,7 @@ module Colors
     def white(text); colorize(text, 37); end
     def white_b(text); colorize(text, 97); end
 
-    private
+      private
 
     def colorize(text, color_code)
       "\e[#{color_code}m#{text}\e[0m"

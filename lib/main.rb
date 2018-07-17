@@ -8,7 +8,7 @@ require './output'
 # ironically it's messier than ever before
 
 def main
-  include Output, GameStatus
+  include GameStatus
   the_user = User.new
 
   if the_user.prompt_start.downcase.eql? 'y'
@@ -18,7 +18,7 @@ def main
     exit(0)
   end
 
-  print_intro
+  Output.print_intro
   the_secret_code = SecretCode.new
   the_user.take_input
   the_user.give_feedback

@@ -2,7 +2,6 @@ require './output'
 require './main'
 
 module GameStatus
-  include Output
   def guesses_left?(guesses_left)
     if guesses_left.zero?
       game_end
@@ -12,9 +11,9 @@ module GameStatus
     private
 
   def game_end
-    print_no_guesses
-    # print_the_code
-    print_start_again
+    Output.print_no_guesses
+    Output.print_the_code
+    Output.print_start_again
 
     if gets.chomp.downcase.eql? 'y'
       puts 'too bad, thanks for playing though x)'
