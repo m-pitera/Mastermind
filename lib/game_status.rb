@@ -1,33 +1,24 @@
 require './output'
-require './main'
+require './game_functions'
 
 module GameStatus
-  class << self
-
-    def guesses_left?(guesses_left)
-      if guesses_left.zero?
-        game_end
-      end
+  # will have 0 params once I implement a class that holds all in-game info
+  # this is a temporary fix
+  def game_over?(guesses_left)
+    if win?
+      GameFunctions.game_win
+    elsif !guesses_left?(guesses_left)
+      GameFunctions.game_lose
     end
+  end
 
     private
 
-    def game_end
-      Output.print_no_guesses
-      Output.print_the_code
-      Output.print_start_again
+  def guesses_left?(guesses_left)
+    !guesses_left.zero?
+  end
 
-      if gets.chomp.downcase.eql? 'y'
-        puts 'too bad, thanks for playing though x)'
-        exit(0)
-      end
-      game_exit
-    end
-
-    def game_exit
-      # system 'clear'
-      puts(Colors.cyan_b('Thanks for playing!'))
-      exit(0)
-    end
+  def win?
+    false # u can't win yet x)
   end
 end

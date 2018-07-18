@@ -10,8 +10,8 @@ class SecretCode
 
   def gen_secret_code
     randomness = Random.new
-    return (1..4).map { |_| randomness.rand(1..6) }
     Output.print_code_generated
+    return (1..4).map { |_| randomness.rand(1..6) }
   end
 
   def compare_to_secret_code; end
