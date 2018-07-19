@@ -22,7 +22,7 @@ class SecretCode
       red_pin = 4
       return 'win'
     else
-      feedback = Array.new(5) {'blank'}
+      feedback = Array.new(4) {'blank'}
       feedback = check_for_red(guess, feedback)
       feedback = check_for_white(guess, feedback)
       count_pins(feedback)
