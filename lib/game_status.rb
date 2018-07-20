@@ -15,7 +15,7 @@ module GameStatus
     private
 
   def guesses_left?(guesses_left)
-    !guesses_left.zero?
+    guesses_left != 0
   end
 
   def win?

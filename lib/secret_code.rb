@@ -18,20 +18,23 @@ class SecretCode
   # with that in mind there will be no params necessary as feedback and guess
   # and all these vars will be referring to themselves as values within a hash
   def compare_to_secret_code(guess)
-    if guess == code
-      red_pin = 4
+    feedback = Array.new(4) {'blank'}
+    if guess == @code
+      feedback = Array.new(4) {'red'}
+      puts 'test win'
       return 'win'
     else
-      feedback = Array.new(4) {'blank'}
       feedback = check_for_red(guess, feedback)
       feedback = check_for_white(guess, feedback)
-      count_pins(feedback)
     end
+
+    pins = count_pins(feedback)
+    Output.print_feedback(pins[0], pins[1])
   end
 
     private
 
-  def check_for_red(guess)
+  def check_for_red(guess, feedback)
     guess_index = 0
 
     until guess_index == 4 do
@@ -42,24 +45,30 @@ class SecretCode
     return feedback
   end
 
-  def check_for_white(guess)
+  def check_for_white(guess, feedback)
     guess_index = 0
     code_index = 0
 
     until guess_index == 4 do
       until code_index == 4 do
+        code_index += 1
         next if feedback[code_index] != 'blank'
         feedback[code_index] = 'white' if guess[guess_index] = code[code_index]
       end
+      guess_index += 1
     end
 
     return feedback
   end
 
   def count_pins(feedback)
+    red_pin = 0
+    white_pin = 0
     feedback.each do |pin|
       red_pin += 1 if pin == 'red'
       white_pin += 1 if pin == 'white'
     end
+
+    return [red_pin, white_pin]
   end
 end

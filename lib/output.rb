@@ -1,6 +1,5 @@
 require_relative './user'
 require_relative './colors'
-require_relative './secret_code'
 
 class Output
   class << self
@@ -109,6 +108,10 @@ class Output
 
     def print_win
       puts WIN
+    end
+
+    def print_feedback(red_pin, white_pin)
+      puts "Red Pins: #{red_pin}\t White Pins: #{white_pin}"
     end
 
       private

@@ -23,15 +23,15 @@ class User
 
     @guess = the_input
     @guesses_left -= 1
-    next_command('input')
+    return @guess
   end
 
-  def give_feedback(p_input = @guess)
-    GameStatus.game_over?(@guesses_left)
-
-    puts("I haven't coded the feedback yet :)")
-    next_command('feedback')
-  end
+  # def give_feedback(p_input = @guess)
+  #   GameStatus.game_over?(@guesses_left)
+  #
+  #   puts("I haven't coded the feedback yet :)")
+  #   next_command('feedback')
+  # end
 
   def prompt_start
     system 'clear'
@@ -41,19 +41,15 @@ class User
     return gets.chomp
   end
 
-  private
+    private
 
-  def next_command(previous)
-    if (previous.eql? 'input')
-      give_feedback
-      return
-    elsif (previous.eql? 'feedback')
-      take_input
-      return
-    else
-      return
-    end
-  end
+  # def next_command(previous)
+  #   if (previous.eql? 'input')
+  #     give_feedback
+  #   elsif (previous.eql? 'feedback')
+  #     take_input
+  #   end
+  # end
 
   def is_quit?(user_input)
     if (user_input.downcase.eql? 'quit')
