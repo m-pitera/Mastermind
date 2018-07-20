@@ -1,4 +1,5 @@
 require './output'
+require 'pry'
 
 class SecretCode
   attr_reader :code
@@ -17,9 +18,18 @@ class SecretCode
   # most of this is built to acompany the presence of a class that stores all data
   # with that in mind there will be no params necessary as feedback and guess
   # and all these vars will be referring to themselves as values within a hash
-  def compare_to_secret_code(guess)
+  def compare_to_secret_code(guess_s)
+    guess = [0, 0, 0, 0]
+    i = 0
+    guess_s.each do |val|
+      guess[i] = val.to_i
+      i += 1
+    end
+
+    print guess
+    print code
     feedback = Array.new(4) {'blank'}
-    if guess == @code
+    if guess == code
       feedback = Array.new(4) {'red'}
       puts 'test win'
       return 'win'
@@ -38,10 +48,16 @@ class SecretCode
     guess_index = 0
 
     until guess_index == 4 do
-      feedback[guess_index] = 'red' if guess[guess_index] = code[guess_index]
+      print guess[guess_index]
+      print code[guess_index]
+      if guess[guess_index] == code[guess_index]
+        feedback[guess_index] = 'red'
+        binding.pry
+      end
       guess_index += 1
     end
 
+    print feedback
     return feedback
   end
 
@@ -51,13 +67,17 @@ class SecretCode
 
     until guess_index == 4 do
       until code_index == 4 do
-        code_index += 1
-        next if feedback[code_index] != 'blank'
+        binding.pry
+        if feedback[code_index] != 'blank'
+          code_index += 1
+          next
+        end
         feedback[code_index] = 'white' if guess[guess_index] = code[code_index]
+        code_index += 1
       end
       guess_index += 1
     end
-
+    # print feedback
     return feedback
   end
 
