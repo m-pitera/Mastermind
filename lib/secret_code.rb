@@ -30,8 +30,8 @@ class SecretCode
     print code
     feedback = Array.new(4) {'blank'}
     if guess == code
-      feedback = Array.new(4) {'red'}
       puts 'test win'
+      feedback = Array.new(4) {'red'}
       return 'win'
     else
       feedback = check_for_red(guess, feedback)
@@ -52,7 +52,6 @@ class SecretCode
       print code[guess_index]
       if guess[guess_index] == code[guess_index]
         feedback[guess_index] = 'red'
-        binding.pry
       end
       guess_index += 1
     end
@@ -66,18 +65,30 @@ class SecretCode
     code_index = 0
 
     until guess_index == 4 do
+      code_index = 0
       until code_index == 4 do
-        binding.pry
         if feedback[code_index] != 'blank'
+          if feedback[code_index] == 'red'
+            guess_index += 1
+          end
           code_index += 1
           next
         end
-        feedback[code_index] = 'white' if guess[guess_index] = code[code_index]
+        # binding.pry
+        if guess[guess_index] == code[code_index]
+          # binding.pry
+          feedback[code_index] = 'white'
+          guess_index += 1
+          code_index = 0
+        end
         code_index += 1
       end
+
       guess_index += 1
     end
-    # print feedback
+    print feedback
+    print guess_index
+    print code_index
     return feedback
   end
 
