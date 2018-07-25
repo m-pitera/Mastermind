@@ -1,4 +1,4 @@
-require './output'
+require 'output'
 
 class SecretCode
   attr_accessor :code

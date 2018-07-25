@@ -22,21 +22,6 @@ RSpec.describe SecretCode do
     end
   end
 
-  # not sure if i should be testing this?
-  describe '#count_pins' do
-    context 'will correctly count up the pins' do
-      it 'when all pins white' do
-        feedback = Array.new(4) {'red'}
-        expect(count_pins(feedback)).to_eq [4, 0]
-      end
-      it 'when all pins red' do
-        feedback = Array.new(4) {'white'}
-        count_pins(feedback)
-        expect(count_pins(feedback)).to_eq [4, 0]
-      end
-    end
-  end
-
   describe '#compare_to_guess' do
   # am I just testing random cases at this point? is this ok?
     context 'will correctly assign pins when' do
