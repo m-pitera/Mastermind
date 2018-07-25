@@ -4,6 +4,8 @@ require 'pry'
 class SecretCode
   attr_reader :code
 
+  LENGTH_OF_CODE = 4;
+
   def initialize
     @code = gen_secret_code
     Output.gimme_de_code(@code)
@@ -12,7 +14,7 @@ class SecretCode
   def gen_secret_code
     randomness = Random.new
     Output.print_code_generated
-    return (1..4).map { |_| randomness.rand(1..6) }
+    return (1..LENGTH_OF_CODE).map { |_| randomness.rand(1..6) }
   end
 
   # most of this is built to acompany the presence of a class that stores all data
@@ -21,13 +23,9 @@ class SecretCode
   def compare_to_guess(guess_s)
     guess = format_guess(guess_s)
 
-    print guess
-    print code
-
     unless win?(guess, code)
-      feedback = Array.new(4) {'blank'}
+      feedback = Array.new(LENGTH_OF_CODE) {'blank'}
       feedback = check_for_red(guess, feedback)
-      print feedback
       feedback = check_for_white(guess, feedback)
       pins = count_pins(feedback)
       Output.print_feedback(pins[0], pins[1])
@@ -38,26 +36,19 @@ class SecretCode
     private
 
   def check_for_red(guess, feedback)
-    guess_index = 0
-
-    # change 4 to global var
-    # potentially consider 4.times loop while still iterating thru
-    until guess_index == 4 do
+    LENGTH_OF_CODE.times do |guess_index|
       feedback[guess_index] = 'red' if guess[guess_index] == code[guess_index]
-      guess_index += 1
     end
 
     return feedback
   end
 
   def check_for_white(guess, feedback)
-    4.times do |guess_index|
-      puts 'test1'
-      4.times do |code_index|
+    LENGTH_OF_CODE.times do |guess_index|
+      LENGTH_OF_CODE.times do |code_index|
         if feedback[code_index] != 'blank'
           guess_index += 1 if feedback[code_index] == 'red'
           next
-          puts 'should not run'
         end
 
         feedback[code_index] = 'white' if guess[guess_index] == code[code_index]
@@ -74,22 +65,18 @@ class SecretCode
   end
 
   def format_guess(guess_s)
-    guess = [0, 0, 0, 0]
-    i = 0
-    guess_s.each do |val|
-      guess[i] = val.to_i
-      i += 1
+    guess = Array.new(LENGTH_OF_CODE)
+
+    LENGTH_OF_CODE.times do |val|
+      guess[val] = guess_s[val].to_i
     end
+
     return guess
   end
 
-  # these 2 methods are practically just conditionals
-  # should I simply move them to the case they are used?
+  # this method is practically just a conditional statement
+  # should I move it to the case they in which it's used?
   def win?(guess, code)
     return guess == code
-  end
-
-  def is_red?(feedback, index)
-    return feedback[index] == 'red'
   end
 end
