@@ -1,6 +1,6 @@
-require './output'
-require './validate'
-require './game_status'
+require_relative 'output'
+require_relative 'validate'
+require_relative 'game_status'
 
 # User class knows too much, i made a mess and now refactoring
 class User

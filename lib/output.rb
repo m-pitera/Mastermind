@@ -1,5 +1,5 @@
-require_relative './user'
-require_relative './colors'
+require_relative 'user'
+require_relative 'colors'
 
 class Output
   class << self

@@ -1,4 +1,4 @@
-require './output'
+require_relative 'output'
 
 class GameFunctions
   class << self

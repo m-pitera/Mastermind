@@ -1,5 +1,4 @@
 require './output'
-require 'pry'
 
 class SecretCode
   attr_reader :code

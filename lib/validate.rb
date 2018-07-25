@@ -1,4 +1,4 @@
-require './output'
+require_relative 'output'
 
 module Validate
   def is_valid?(the_input)
