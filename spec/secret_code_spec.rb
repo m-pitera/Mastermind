@@ -4,7 +4,7 @@ RSpec.describe SecretCode do
   describe '#initialize' do
     xit 'generates a secrect code when initialized' do
       # mock to check that gen_secret_code is called
-      # but would that be testing behavior?
+      # but would that be testing behavior or simply ruby?
     end
   end
 
@@ -21,24 +21,6 @@ RSpec.describe SecretCode do
   end
 
   # not sure if i should be testing this?
-  describe '#check_for_red' do
-    context 'will correctly assign red pins when' do
-      it 'condition 1' do; end
-      xit 'condition 2' do; end
-      xit 'condition 3' do; end
-    end
-  end
-
-  # not sure if i should be testing this?
-  describe '#check_for_white' do
-    context 'will correctly assign white pins when' do
-      xit 'condition 1' do; end
-      xit 'condition 2' do; end
-      xit 'condition 3' do; end
-    end
-  end
-
-  # not sure if i should be testing this?
   describe '#count_pins' do
     context 'will correctly count up the pins' do
       xit 'when all pins white' do
@@ -51,16 +33,49 @@ RSpec.describe SecretCode do
         count_pins(feedback)
         expect(red_pin).to eq 4 && white_pin.to eq 0
       end
-      xit 'when ?' do
-
-      end
+      xit 'when ?' do; end
     end
   end
-  describe '#compare_to_secret_code' do
+
+  # am I just testing random cases at this point? is this ok?
+  describe '#compare_to_guess' do
     context 'will correctly assign pins when' do
-      xit 'condition 1' do; end
-      xit 'condition 2' do; end
-      xit 'condition 3' do; end
+      xit '2 red and 2 white expected' do
+        code = SecretCode.new
+        code.code = [1, 1, 2, 2]
+        guess_s = ['1', '2', '2', '1']
+        expect(code.compare_to_guess(guess_s)).to eq [2, 2]
+      end
+      xit '2 red and 0 white expected' do
+        code = SecretCode.new
+        code.code = [1, 1, 1, 1]
+        guess_s = ['1', '1', '2', '2']
+        expect(code.compare_to_guess(guess_s)).to eq [2, 0]
+      end
+      xit '1 red and 2 white expected' do
+        code = SecretCode.new
+        code.code = [1, 2, 3, 4]
+        guess_s = ['1', '3', '2', '1']
+        expect(code.compare_to_guess(guess_s)).to eq [1, 2]
+      end
+      xit '3 red and 0 white expected' do
+        code = SecretCode.new
+        code.code = [1, 1, 1, 2]
+        guess_s = ['1', '1', '1', '1']
+        expect(code.compare_to_guess(guess_s)).to eq [3, 0]
+      end
+      xit '0 red and 4 white expected' do
+        code = SecretCode.new
+        code.code = [1, 2, 3, 4]
+        guess_s = ['4', '3', '2', '1']
+        expect(code.compare_to_guess(guess_s)).to eq [0, 4]
+      end
+      xit '4 red and 0 white expected' do
+        code = SecretCode.new
+        code.code = [1, 1, 1, 1]
+        guess_s = ['1', '1', '1', '1']
+        expect(code.compare_to_guess(guess_s)).to eq [4, 0]
+      end
     end
   end
 end

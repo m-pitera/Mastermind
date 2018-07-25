@@ -31,6 +31,7 @@ class SecretCode
       feedback = check_for_white(guess, feedback)
       pins = count_pins(feedback)
       Output.print_feedback(pins[0], pins[1])
+      return pins
     end
   end
 
