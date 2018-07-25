@@ -1,7 +1,7 @@
 require './output'
 
 class SecretCode
-  attr_reader :code
+  attr_accessor :code
 
   LENGTH_OF_CODE = 4;
 
