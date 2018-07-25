@@ -20,4 +20,4 @@
 
 ## Current Capabilities
 
-  The game's current capabilities are that it will prompt at start to begin and react accordingly. After the instructions it will process guesses as valid or invalid and give instructions according to what was incorrect. The User will not receive feedback yet and it is impossible to win the game, but after all 10 guesses the secret code will be presented and the user will be prompted whether they'd like to restart. The user may also type 'quit' during the guess phase at any time and the game will exit.
+  The game's current capabilities are that it will prompt at start to begin and react accordingly. After the instructions it will process guesses as valid or invalid and give instructions according to what was incorrect. The User will receive feedback, but it is impossible to win the game. After all 10 guesses the secret code will be presented and the user will be prompted whether they'd like to restart. The user may also type 'quit' during the guess phase at any time and the game will exit.
