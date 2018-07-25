@@ -1,5 +1,5 @@
-require './output'
-require './game_functions'
+require_relative 'output'
+require_relative 'game_functions'
 
 module GameStatus
   # will have 0 params once I implement a class that holds all in-game info
@@ -15,7 +15,7 @@ module GameStatus
     private
 
   def guesses_left?(guesses_left)
-    !guesses_left.zero?
+    guesses_left.positive?
   end
 
   def win?
